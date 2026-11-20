@@ -1,0 +1,6 @@
+/* Visible in public preview only; keeps account form present in source for future authenticated releases. */
+.cs-preview-banner {display:flex;align-items:center;gap:10px;margin:14px 18px 0;padding:11px 15px;border:1px solid rgba(89,202,182,.28);border-radius:14px;background:linear-gradient(115deg,rgba(44,141,148,.16),rgba(87,91,170,.13));color:var(--text,#e2eef3);font-size:12px;font-weight:650;letter-spacing:.015em;line-height:1.5;}
+.cs-preview-dot {width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#68d7bc;box-shadow:0 0 9px rgba(104,215,188,.55);}
+.cs-public-preview .auth-card #authLoggedOut,.cs-public-preview .auth-card #authLoggedIn,.cs-public-preview .auth-card #authMessage {display:none!important;}
+.cs-preview-auth-note {max-width:680px;color:var(--text-muted,#98aebc);line-height:1.65;font-size:14px;margin:8px 0 0;}
+@media (max-width:768px){.cs-preview-banner{margin:10px 12px 0;padding:10px 12px;font-size:11px;}}

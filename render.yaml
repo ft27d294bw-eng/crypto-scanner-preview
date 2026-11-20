@@ -1,0 +1,14 @@
+# Public, read-only preview. Real accounts are intentionally disabled.
+services:
+  - type: web
+    name: crypto-scanner-preview
+    runtime: node
+    plan: free
+    buildCommand: npm test
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PUBLIC_PREVIEW
+        value: '1'
