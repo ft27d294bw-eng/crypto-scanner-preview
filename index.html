@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#080c12">
   <meta name="description" content="Crypto Scanner — public market quotes, bid/ask comparisons and reference FX rates. Partial provider availability possible.">
   <meta name="color-scheme" content="dark light">
-  <title>Crypto Scanner v0.7 — Live Public Preview</title>
+  <title>Crypto Scanner v0.8 — Azure Edition</title>
   <style>
 :root { --bg:#080c12; --side:#0b1018; --surface:#101720; --surface2:#121b25; --surface3:#17212b; --border:#222b35; --border-soft:#1a2430; --white:#f1f5f6; --muted:#778391; --muted2:#a5afb9; --accent:#b9ff72; --green:#aaff73; --danger:#ff817c; --purple:#afa9fa; --font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
 * { box-sizing:border-box; }
@@ -747,10 +747,149 @@ window.fetch=(input,init)=>{
 :root[data-theme=light] #csLiveNotice{color:#315768;background:#d7eff3;border-color:#aacdd5}
 @media(max-width:750px){#csLiveNotice{margin:8px 14px 0;padding:10px 13px;font-size:11px}}
 </style>
+<style id="v08-azure-styles">/* Crypto Scanner v0.8 · Azure Edition — visual system */
+:root,
+:root[data-theme="dark"],:root[data-accent="blue"],:root[data-accent="mint"],:root[data-accent="violet"] {
+ --accent:#52c8ff!important; --green:#74d9ff!important; --purple:#a7a5ff;
+ --bg:#08111f;--side:#0b1627;--surface:#111d30;--surface2:#14243a;--surface3:#1a3048;
+ --border:#273954;--border-soft:#1f3049;--white:#f1f7ff;--muted:#91a5bd;--muted2:#bfcee0;
+ --v08-ink:#f2f8ff;--v08-sub:#a9bed7;--v08-card:#13233a;--v08-line:rgba(134,174,230,.19);
+}
+:root[data-theme="light"]{--bg:#edf6ff;--side:#f8fbff;--surface:#fff;--surface2:#f4f8ff;--surface3:#e9f3ff;--border:#d4e3f5;--border-soft:#d9e5f5;--white:#1b2c49;--muted:#536f92;--muted2:#405d7b;--v08-ink:#203855;--v08-sub:#5f7793;--v08-card:#fff;--v08-line:rgba(71,117,181,.22)}
+body{background:var(--bg);background-image:radial-gradient(ellipse 57% 33% at 82% -10%,rgba(43,129,237,.14),transparent),linear-gradient(180deg,transparent,var(--bg))}
+.sidebar{background:linear-gradient(160deg,#0b1b30,#0b1423 75%);border-right-color:#29405b}
+.brand-symbol{transform:rotate(0);border-radius:11px;overflow:hidden;gap:2px;padding:4px;background:#132c49;border:1px solid #346b99}
+.brand-symbol span{background:#52c8ff!important;border-radius:3px!important}
+.brand-symbol span:nth-child(2){background:#94ddff!important}.brand-symbol span:nth-child(3){background:#397dc7!important}.brand-symbol span:nth-child(4){background:#bfebff!important}
+.brand-words>span{color:#6ed5ff}.nav-item.active{background:rgba(65,150,235,.14);border-color:#2b608a;color:#8dddff}
+.side-quiet-card{background:linear-gradient(145deg,#123253,#11253c);border-color:#315678}.side-quiet-card p{color:#9cb6d0}
+.lang-switch button.active,.filter-pill.active,.exchange-toggle.active{background:rgba(49,128,209,.19);color:#a7eaff;border-color:#4083b9}
+.exchange-toggle.active i{background:#5ed1ff}
+.topbar{background:rgba(10,23,40,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hero{border:1px solid rgba(93,166,242,.38);background:radial-gradient(ellipse at 89% 10%,rgba(47,131,235,.33),transparent 53%),linear-gradient(112deg,#132a48,#10223d 62%,#102940);box-shadow:inset 0 1px 0 #b1e7ff16,0 25px 55px rgba(5,14,28,.16);border-radius:23px}
+.hero-glow{background:#4b8fff24}.hero-eyebrow{color:#9dd9ff}.hero p{color:#c1d4e9}.hero-exchanges>span{color:#9cb3cd}.exchange-chips span{border-color:#527ca4;background:#529cda15;color:#d6ebff;border-radius:10px}
+.orbit,.orbit-1,.orbit-3{border-color:#7bd1ff49}.orbit-core{background:linear-gradient(140deg,#a7e5ff,#4c9fe6);border-color:#a3eaff;box-shadow:0 0 84px #2494f75c}.orbit-core span{color:#06365a}.orbital-node{background:#123353;color:#d6edff;border-color:#5787b7}
+.metric-card,.terminal,.calc-card,.signal-card,.glass-panel,.portfolio-kpi,.settings-card,.profile-card,.v5-settings-card{background:var(--v08-card);border:1px solid var(--v08-line);box-shadow:0 9px 29px #02091515;border-radius:18px}
+.metric-icon.metric-green,.spread-positive,.v5-up,.profit,.up,.pill-result:not(.loss){color:#77d3ff!important}
+.pill-result:not(.loss){background:#143e5a;border-color:#2d729e}
+.filter-pill.active,.exchange-toggle.active{color:#93dbff}.star-btn.active,.v08-star[aria-pressed="true"]{color:#f3be67!important}
+.calc-note{background:#13283b;border-color:#345670;color:#a6c4db}.calc-symbol{color:#64c4ff}.signal-mark{background:#214866}
+.orbit-core,.side-quiet-icon,.orbital-node span,.top-avatar{color:#75d6ff}
+.top-avatar{background:#1b3656;border-color:#3b78ad}
+button,.filter-pill,.nav-item,.glass-panel,.metric-card{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #62ccff;outline-offset:3px}
+button:hover{border-color:#599dd2}
+.glass-dock{background:rgba(16,32,54,.86)!important;border-color:rgba(100,180,246,.38)!important;box-shadow:0 14px 48px #0209147a!important;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.dock-button.active{background:linear-gradient(150deg,#1f608d,#235782)!important;color:#e8f8ff!important;box-shadow:0 3px 18px #167bc33d}
+.dock-button.active svg{color:#d5f4ff}.dock-button svg{stroke-width:1.9}
+.settings-icon{color:#91dfff!important;background:linear-gradient(135deg,#163a5c,#1e4771)!important}
+:root[data-theme="light"] .sidebar{background:linear-gradient(160deg,#f9fcff,#eaf3ff);border-right-color:#d5e6fa}
+:root[data-theme="light"] .topbar{background:rgba(250,253,255,.7)}
+:root[data-theme="light"] .hero{background:linear-gradient(110deg,#133453,#2d629a 75%,#276b9a)}
+:root[data-theme="light"] .hero,:root[data-theme="light"] .hero h1,:root[data-theme="light"] .hero p{color:#fff}
+:root[data-theme="light"] .glass-dock{background:rgba(236,246,255,.88)!important}
+/* Header chips and scanner radar */
+.v08-version{display:inline-flex;align-items:center;gap:6px;color:#9edcff;border:1px solid #3673a3;background:#183a5f;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.5px}
+.v08-radar{margin:18px 0 24px;padding:23px;background:linear-gradient(135deg,#102d49,#122239 64%,#172b48);border:1px solid #355d83;border-radius:22px;position:relative;overflow:hidden}
+.v08-radar:before{content:"";position:absolute;right:-120px;top:-150px;background:#288bdc1c;filter:blur(40px);width:420px;height:360px;border-radius:50%;pointer-events:none}
+.v08-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative}
+.v08-eyebrow{font-size:10px;color:#7fb9df;letter-spacing:1.6px;font-weight:800;text-transform:uppercase}
+.v08-head h2{font-size:22px;letter-spacing:-.6px;margin:6px 0;color:#f2faff}
+.v08-head p{margin:0;color:#9db5cf;font-size:12px;line-height:1.5;max-width:570px}
+.v08-status{border:1px solid #365574;background:#11283e;border-radius:999px;padding:9px 12px;font-size:11px;color:#a9c9de;display:flex;gap:7px;align-items:center}
+.v08-led{width:7px;height:7px;background:#5fc5ff;border-radius:100%;box-shadow:0 0 0 4px #62cfff17}
+.v08-controls{margin:22px 0 15px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;position:relative}
+.v08-controls label{display:flex;align-items:center;gap:8px;color:#afc7e3;font-size:12px}
+.v08-controls input[type="number"]{width:85px;color:#f1f8ff;border:1px solid #426787;background:#10243c;border-radius:10px;padding:10px 11px;font-weight:750;min-height:40px}
+.v08-controls select{font-size:11px;background:#152d48;border:1px solid #345675;padding:10px;color:#e5f6ff;border-radius:10px;min-height:40px}
+.v08-alert-toggle{border:1px solid #477a9c;background:#163a59;color:#caeaff;border-radius:12px;font-weight:750;padding:11px 14px;min-height:40px}
+.v08-alert-toggle[aria-pressed="true"]{background:#226ca0;border-color:#75c7ff;color:#fff}
+.v08-signal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative}
+.v08-signal{border:1px solid #315371;border-radius:16px;padding:16px 16px 13px;background:linear-gradient(160deg,#162d49,#132338);min-width:0}
+.v08-signaltop{display:flex;gap:9px;align-items:center;justify-content:space-between}
+.v08-signalasset{display:flex;align-items:center;gap:8px;min-width:0}.v08-signalasset .coin-avatar{width:29px;height:29px}
+.v08-signalasset strong{font-size:14px;color:#eef8ff;letter-spacing:.1px}
+.v08-star{border:1px solid #456481;background:#11283f;color:#8aa7c4;border-radius:10px;font-size:19px;width:34px;height:34px;line-height:1}
+.v08-route{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:13px 0 11px;color:#adcbdf;font-size:11px}
+.v08-route i{font-style:normal;color:#5ca9dd;font-size:16px}
+.v08-route strong{color:#dff1ff;font-size:11px}
+.v08-stats{display:flex;justify-content:space-between;align-items:end;gap:8px;padding-top:11px;border-top:1px solid #294762}
+.v08-stats small{display:block;color:#819fbc;font-size:9px;margin-bottom:5px}.v08-stats strong{display:block;color:#7ed9ff;font-size:19px}.v08-stats .v08-pct{color:#d7edff;font-size:14px}
+.v08-flags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px;min-height:21px}.v08-flag{border-radius:20px;border:1px solid #3a5878;padding:3px 7px;color:#a8c4dc;font-size:9px}
+.v08-flag.bad{border-color:#80565b;color:#ffbac0}
+.v08-open{margin-top:10px;border:1px solid #426a92;border-radius:9px;background:#19466e;color:#e9f8ff;padding:9px;width:100%;font-size:11px;font-weight:800}
+.v08-empty{grid-column:1/-1;padding:20px;border:1px dashed #385a7a;border-radius:14px;color:#adc5dd;font-size:12px;line-height:1.6}
+.v08-disclaimer{color:#90abc6;font-size:10px;line-height:1.65;margin:13px 0 0;position:relative}
+/* Favorites on spotlight, buttons and local messages */
+.pulse-tile{position:relative;border-radius:18px!important}
+.v08-pulse-star{position:absolute;right:13px;top:13px;background:#132941cc;border:1px solid #476587;color:#8daac7;border-radius:11px;width:32px;height:32px;font-size:20px;z-index:2}
+.v08-pulse-star[aria-pressed="true"]{color:#ffcb79;border-color:#936f42}
+.v08-pulse-star~.pulse-index{display:none}
+.v08-toast{position:fixed;bottom:100px;right:20px;max-width:360px;padding:14px 16px;background:#173957;border:1px solid #64b8f0;color:#f0faff;box-shadow:0 20px 55px #0006;border-radius:14px;z-index:9999;font-size:12px;line-height:1.5;animation:v08-in .2s ease}
+@keyframes v08-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Portfolio currencies, premium inputs */
+.v08-portfolio-currency{display:flex;align-items:center;gap:9px;color:#9ebfe0;font-size:11px;font-weight:750;flex-wrap:wrap}
+.v08-portfolio-currency select,.v08-cost-currency select{min-height:39px;background:#15314d;color:#e6f5ff;border:1px solid #4074a0;border-radius:11px;padding:10px 12px;font-size:12px}
+.v08-cost-currency{margin-bottom:12px;display:flex;gap:9px;align-items:center;color:#aec9e7;font-size:11px}
+.v08-cost-currency select{flex:1;min-width:100px;max-width:210px}
+.v08-help{font-size:10px;color:#85a6c9;line-height:1.55;margin-top:7px}
+.v08-portfolio-kpi-label{letter-spacing:.4px}
+.v08-note{color:#9db9d5;font-size:10px;line-height:1.6}
+.v08-install{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(110deg,#163753,#13283e);border:1px solid #355c80;border-radius:14px;margin:16px 0 0;padding:12px 14px;color:#accce7;font-size:11px}
+.v08-install strong{color:#eef8ff}
+/* compact mobile layout */
+@media(max-width:1100px){.v08-signal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+ .content-inner{padding-left:15px!important;padding-right:15px!important}.v08-radar{padding:16px;margin:14px 0 22px;border-radius:19px}.v08-head h2{font-size:21px}.v08-head p{font-size:11px}
+ .v08-signal-grid{grid-template-columns:1fr;gap:9px}.v08-signal{padding:14px}.v08-stats strong{font-size:20px}.v08-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px}.v08-controls label{justify-content:space-between}.v08-controls input[type="number"],.v08-controls select{width:100%;max-width:none}.v08-alert-toggle{grid-column:1/-1}
+ .v08-portfolio-currency{width:100%}.v08-portfolio-currency select{min-width:140px}
+ .coin-pulse-grid{gap:10px}.pulse-tile{padding:14px!important;min-height:130px}
+ .glass-dock{left:8px!important;right:8px!important;bottom:calc(6px + env(safe-area-inset-bottom,0px))!important;width:auto!important;border-radius:21px!important;padding:6px 3px!important}
+ .dock-button{min-width:0!important;padding:9px 3px!important}.dock-button span{font-size:9px!important}.dock-button svg{width:19px;height:19px}
+}
+@media(max-width:400px){.v08-controls{grid-template-columns:1fr}.v08-alert-toggle{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+/* Final mobile dock geometry: inherited translateX previously clipped the menu. */
+@media (max-width:750px){
+ .glass-dock.dock-six{transform:none!important;left:8px!important;right:8px!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:1px!important;box-sizing:border-box!important;}
+ .dock-button{width:100%!important;min-width:0!important;white-space:normal!important;word-break:normal!important;}
+ .dock-button span{font-size:8px!important;letter-spacing:-.4px!important}
+ .v08-radar{scroll-margin-top:18px}
+}
+/* Consistent premium azure identity and legible portfolio cards. */
+:root[data-theme="dark"] .hero h1 em{color:#88daff!important}
+:root[data-theme="dark"] .hero-eyebrow{color:#93d3ff!important}
+:root[data-theme="dark"] .brand-words>span{color:#7cd9ff!important}
+:root[data-theme="dark"] .v08-signal{box-shadow:inset 0 1px 0 rgba(155,211,255,.08)}
+/* Fine polish: compact live notice, blue mobile logo, nonblocking local alert toast */
+#csLiveNotice{background:linear-gradient(95deg,#143c5bba,#1a2d4a);border-color:#376b96;color:#cbe7fb;font-size:11px;line-height:1.4;padding:8px 15px;border-radius:12px}
+#csLiveNotice strong{color:#86d6ff}
+.mobile-logo{background:linear-gradient(135deg,#3b9ce8,#91dfff)!important;color:#062d4b!important;box-shadow:0 5px 20px #36a9ed5c!important}
+.mobile-wordmark strong span{color:#86d8ff!important}
+.v08-toast{pointer-events:none}
+:root[data-theme="dark"] .portfolio-kpi-main{background:radial-gradient(circle at 94% 20%,#3095e74c,transparent 48%),linear-gradient(120deg,#143b5e,#1a2c49);border-color:#3e85bd69}
+:root[data-theme="dark"] .v5-profile-meter .v5-meter-track i{background:linear-gradient(90deg,#367fe0,#83d9ff)}
+@media(max-width:700px){#csLiveNotice{margin:8px 14px 0;padding:8px 11px;font-size:10px}}
+/* Meaningful, non-green accent choices: Azure / Ice / Indigo. */
+:root[data-accent="blue"]{--accent:#52c8ff!important;--green:#74d9ff!important}
+:root[data-accent="mint"]{--accent:#80ddff!important;--green:#9ce9ff!important}
+:root[data-accent="violet"]{--accent:#a4a0ff!important;--green:#7bcbff!important}
+:root[data-accent="mint"] .brand-words>span{color:#80ddff!important}
+:root[data-accent="violet"] .brand-words>span{color:#a7a7ff!important}
+[data-avatar="mint"]{--swatch:#7ad6fc!important}
+@media(max-width:700px){
+ .portfolio-kpi strong{font-size:clamp(17px,4.6vw,27px)!important;white-space:normal!important;overflow-wrap:anywhere;line-height:1.2}
+ .portfolio-kpi-main strong{font-size:clamp(25px,7vw,34px)!important}
+}
+</style>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <!-- LIVE PUBLIC PREVIEW ON HTTPS. DEMO QUOTES ONLY WHEN ?demo=1 OR FILE://. DO NOT USE AS TRADE SIGNALS. -->
-<div id="csLiveNotice" role="note"><strong>Crypto Scanner v0.7 · LIVE PUBLIC PREVIEW</strong> — <span id="csLiveNote">Публичные биржевые котировки, если API доступны в вашем браузере. Некоторые биржи могут быть недоступны. Фиатные курсы — справочные, не внутридневные. При ошибке котировки НЕ заменяются вымышленными.</span> <a href="?demo=1">Демо / Demo</a></div>
+<div id="csLiveNotice" role="note"><strong>Crypto Scanner v0.8 · AZURE EDITION</strong> — <span id="csLiveNote">Биржевые цены из доступных API. Валюты — справочные курсы. Без подмены на вымышленные цены.</span> <a href="?demo=1">Демо / Demo</a></div>
   <div class="app-shell">
     <aside class="sidebar">
       <a class="brand" href="./" aria-label="Crypto Scanner">
@@ -858,7 +997,18 @@ window.fetch=(input,init)=>{
           <p class="v5-compare-note" data-v5="compareWarning">Это оценка, а не гарантированный арбитраж. Глубина стакана, ограничения переводов, сети, сроки, KYC и изменение цен могут сделать сделку убыточной.</p>
         </section>
 
-        <section class="terminal" id="terminal">
+        
+<section class="v08-radar" id="v08Radar" aria-labelledby="v08RadarTitle">
+ <div class="v08-head"><div><div class="v08-eyebrow">CRYPTO SCANNER <span class="v08-version">AZURE · v0.8</span></div><h2 id="v08RadarTitle">Умный Radar</h2><p id="v08RadarIntro"></p></div><div class="v08-status"><span class="v08-led"></span><span id="v08Status">—</span></div></div>
+ <div class="v08-controls">
+  <label><span id="v08MinLabel">Мин. доходность</span><input id="v08Threshold" type="number" min="0.1" max="50" step="0.1" value="1" inputmode="decimal" aria-label="Minimum net estimate percent"></label>
+  <label><span id="v08FilterLabel">Показывать</span><select id="v08Filter" aria-label="Radar filter"><option value="all">Все оценки</option><option value="positive">Возможный плюс</option><option value="favorites">★ Избранные</option></select></label>
+  <button class="v08-alert-toggle" id="v08Alert" type="button" aria-pressed="false">🔔 Включить сигналы</button>
+ </div>
+ <div class="v08-signal-grid" id="v08Signals" aria-live="polite"><div class="v08-empty">Подключение к биржам...</div></div>
+ <p class="v08-disclaimer" id="v08RadarDisclaimer"></p><p class="v08-disclaimer" id="v08AlertHelp"></p>
+</section>
+<section class="terminal" id="terminal">
           <div class="terminal-head">
             <div><div class="section-eyebrow"><span class="accent-line"></span><span data-i18n="realTimeData">РЕАЛЬНЫЕ РЫНОЧНЫЕ ДАННЫЕ</span></div><h2 id="tableHeading" data-i18n="opportunities">Поиск расхождений</h2><p class="section-subtitle" id="tableSubtitle" data-i18n="tableDesc">Сравнение лучших цен bid / ask между биржами</p></div>
             <div class="head-actions"><button type="button" class="ghost-btn" id="exportButton"><svg viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 18v3h16v-3"/></svg><span data-i18n="exportCsv">Экспорт CSV</span></button></div>
@@ -915,7 +1065,7 @@ window.fetch=(input,init)=>{
         <section class="app-page portfolio-page" id="portfolioPage" hidden>
           <div class="portfolio-intro">
             <div><div class="page-eyebrow"><span class="live-spark"></span> <span data-i18n="pfEyebrow">ВАШИ АКТИВЫ · ВАШ ПЛАН</span></div><h1 data-i18n="pfTitle">Мой портфель</h1><p data-i18n="pfLead">Крипта, золото и валюты в одном месте. Без подключения кошелька.</p></div>
-            <div class="portfolio-intro-actions"><button id="portfolioSample" type="button" class="glass-refresh" data-i18n="pfSample">Пример портфеля</button><button id="portfolioClear" type="button" class="glass-refresh subtle" data-i18n="pfClear">Очистить</button></div>
+            <div class="portfolio-intro-actions"><label class="v08-portfolio-currency"><span id="v08CurrencyLabel">Валюта отображения</span><select id="v08Currency" aria-label="Portfolio display currency"><option value="USD">USD</option></select></label><button id="portfolioSample" type="button" class="glass-refresh" data-i18n="pfSample">Пример портфеля</button><button id="portfolioClear" type="button" class="glass-refresh subtle" data-i18n="pfClear">Очистить</button></div>
           </div>
           <div class="portfolio-kpis">
             <article class="portfolio-kpi portfolio-kpi-main"><div class="portfolio-kpi-label" data-i18n="pfTotal">Стоимость портфеля</div><strong id="pfTotal">—</strong><span id="pfTotalUsd">—</span><div class="portfolio-kpi-sheen"></div></article>
@@ -932,7 +1082,7 @@ window.fetch=(input,init)=>{
               <span class="mini-eyebrow" data-i18n="pfAddEyebrow">ДОБАВИТЬ АКТИВ</span><h2 data-i18n="pfAddTitle">Новая позиция</h2>
               <label class="pf-field"><span data-i18n="pfAsset">Актив</span><select id="pfAsset" required></select></label>
               <div class="pf-entry-row"><label class="pf-field"><span data-i18n="pfQty">Количество</span><input id="pfQty" type="number" min="0.00000001" max="100000000000" step="any" inputmode="decimal" placeholder="0.50" required></label><label class="pf-field"><span data-i18n="pfBuy">Цена покупки · USD / ед.</span><input id="pfBuy" type="number" min="0" max="10000000000" step="any" inputmode="decimal" placeholder="0.00" required></label></div>
-              <p class="pf-note" data-i18n="pfCostHint">Для PLN и других валют укажите стоимость одной единицы в USD на дату покупки. Если не знаете, оставьте 0 — результат P/L будет неполным.</p>
+              <label class="v08-cost-currency"><span id="v08BuyCurrencyLabel">Цена покупки введена в</span><select id="v08BuyCurrency" aria-label="Currency used for purchase price"><option value="USD">USD</option></select></label><p class="v08-help" id="v08PurchaseNote"></p><p class="pf-note" data-i18n="pfCostHint">Для PLN и других валют укажите стоимость одной единицы в USD на дату покупки. Если не знаете, оставьте 0 — результат P/L будет неполным.</p>
               <button class="pf-primary" type="submit"><span data-i18n="pfAdd">Добавить в портфель</span> <span>＋</span></button><p class="pf-feedback" id="pfFeedback" aria-live="polite"></p>
             </form>
           </div>
@@ -999,7 +1149,7 @@ window.fetch=(input,init)=>{
             <div class="auth-head"><div><span class="mini-eyebrow" data-i18n="authEyebrow">ВАШ АККАУНТ</span><h2 id="authTitle" data-i18n="account">Аккаунт по email</h2><p data-i18n="authLead">Синхронизация профиля между устройствами после подтверждения email.</p></div><span class="auth-glyph">✳</span></div>
             <div id="authLoggedIn" hidden><div class="auth-user"><span class="auth-online-dot"></span><div><strong id="authEmail"></strong><small data-i18n="emailVerified">Email подтверждён</small></div></div><button id="logoutButton" type="button" class="secondary-action" data-i18n="logout">Выйти</button></div>
             <div id="authLoggedOut" hidden><div class="auth-tabs"><button type="button" class="active" data-auth-tab="register" data-i18n="register">Регистрация</button><button type="button" data-auth-tab="login" data-i18n="signIn">Войти</button></div>
-              <form id="authForm"><div class="auth-inputs"><label class="field"><span>Email</span><input type="email" id="authEmailInput" autocomplete="email" placeholder="name@example.com" required></label><label class="field"><span data-i18n="password">Пароль</span><input type="password" id="authPassword" minlength="10" autocomplete="new-password" placeholder="••••••••••" required></label></div><button type="submit" class="primary-action auth-submit" id="authSubmit" data-i18n="createAccount">Создать аккаунт</button></form>
+              <p class="v08-note" id="v08EmailNotice"></p><form id="authForm"><div class="auth-inputs"><label class="field"><span>Email</span><input type="email" id="authEmailInput" autocomplete="email" placeholder="name@example.com" required></label><label class="field"><span data-i18n="password">Пароль</span><input type="password" id="authPassword" minlength="10" autocomplete="new-password" placeholder="••••••••••" required></label></div><button type="submit" class="primary-action auth-submit" id="authSubmit" data-i18n="createAccount">Создать аккаунт</button></form>
               <div class="auth-help" data-i18n="authHelper">После регистрации подтвердите адрес по ссылке из письма.</div></div>
             <p class="auth-message" role="status" id="authMessage" aria-live="polite"></p>
           </section>
@@ -1008,7 +1158,7 @@ window.fetch=(input,init)=>{
         <section class="app-page settings-page" id="settingsPage" hidden aria-labelledby="settingsHeading">
           <div class="page-eyebrow"><span class="live-spark"></span><span data-i18n="preferences">ПЕРСОНАЛИЗАЦИЯ</span></div>
           <div class="page-title-row"><div><h1 id="settingsHeading" data-i18n="settingsTitle">Настройки<span class="title-dot">.</span></h1><p data-i18n="settingsLead">Crypto Scanner под ваши привычки.</p></div><span class="page-decoration">✧</span></div>
-          <div class="settings-stack">
+          <div class="v08-install" id="v08Install"><strong id="v08InstallLabel">Установить на iPhone</strong><span id="v08InstallHelp">Safari → Поделиться → На экран «Домой»</span></div><div class="settings-stack">
             <div class="settings-card glass-panel"><div class="settings-icon">◎</div><div class="settings-main"><h2 data-i18n="appearanceTitle">Внешний вид</h2><p data-i18n="appearanceDescription">Выберите оформление интерфейса.</p><div class="theme-options" role="group" aria-label="Theme">
               <button type="button" data-theme-choice="dark" class="theme-choice"><span class="theme-preview preview-dark"><i></i><i></i><i></i></span><span data-i18n="darkMode">Темная</span><span class="check-circle">✓</span></button>
               <button type="button" data-theme-choice="light" class="theme-choice"><span class="theme-preview preview-light"><i></i><i></i><i></i></span><span data-i18n="lightMode">Светлая</span><span class="check-circle">✓</span></button>
@@ -1452,7 +1602,7 @@ function init(){
 }
 init();
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 }
 
 </script>
@@ -2013,12 +2163,148 @@ rerender();
 
 </script>
 <script>
-/* v0.7 note translated after initialization */
+/* Static quote-status note after initialization */
 (()=>{let last='';function update(){
  let en=false;try{en=localStorage.getItem('cs-lang')==='en';}catch{}const demo=new URLSearchParams(location.search).get('demo')==='1'||location.protocol==='file:';
- const text=demo?(en?'DEMO MODE: all quotes are fictional. Open without ?demo=1 for real public quotes.':'ДЕМО: все цены вымышлены. Откройте без ?demo=1 для публичных котировок.'):(en?'Direct public APIs where browser access is allowed. Unavailable exchanges are shown as unavailable; FX rates are daily references, not executable quotes. No synthetic fallback.':'Публичные котировки с доступных бирж. Недоступные источники показываются как недоступные. Валюты — справочные курсы, не цены сделки. Подмена на демоданные отключена.');
+ const text=demo?(en?'DEMO: fictional quotes, not for trading.':'ДЕМО: условные цены, не для сделок.'):(en?'LIVE: available exchange quotes. FX reference rates; no synthetic fallback.':'LIVE: цены доступных бирж. Валюты — справочные курсы. Без вымышленных цен.');
  const n=document.getElementById('csLiveNote');if(n&&n.textContent!==text)n.textContent=text;
  }update();document.addEventListener('click',()=>setTimeout(update,30));})();
+</script>
+<script id="v08-azure-module">
+/* Crypto Scanner v0.8 — Azure / Radar / Multi-currency Portfolio */
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id), KEY='cs-v08-options';
+const lang=()=>state.lang==='en'?'en':'ru';
+const TEXT={
+ ru:{radar:'Умный Radar',radarLead:'Автоматический анализ покупки по ask и продажи по bid между четырьмя биржами. Сортировка по расчётному результату.',alertOn:'🔔 Сигналы включены',alertOff:'🔔 Включить сигналы',threshold:'Мин. доходность',scope:'Показывать',all:'Все оценки',positive:'Возможный плюс',favorites:'★ Избранные',from:'Купить',to:'Продать',net:'После расходов',gross:'Спред',open:'Подробный расчёт',noQuotes:'Котировки пока не получены. Попробуйте обновить.',noTwo:'Для сравнения нужны две доступные биржи.',noMatch:'Нет пар для выбранных фильтров.',demo:'ДЕМО · вымышленные котировки',partial:'Частичные данные',live:'Публичные котировки',stale:'Устаревший снимок',depth:'Объём заявки неизвестен',low:'Недостаточно объёма',ready:'Верхняя заявка покрывает объём',disclaimer:'Не является торговым сигналом. Спреды не подтверждают возможность перевода между биржами и не гарантируют доходность. Цена может измениться, а реальная глубина и комиссии отличаются.',alert:'Обнаружен расчётный спред',alertNote:'Сигналы работают только при открытом сайте и доступных котировках. Не требуют кошелька.',portfolioCurrency:'Валюта отображения',purchaseCurrency:'Цена покупки введена в',purchaseNote:'При добавлении конвертируем по последнему доступному справочному курсу, а не историческому курсу даты покупки.',currencyMissing:'Для этой валюты пока нет курса.',pwa:'Установить на iPhone:',pwaHelp:'Safari → Поделиться → На экран «Домой»',profileOffline:'Регистрация через email станет доступна после подключения защищённого сервера. Сейчас профиль сохраняется только на этом устройстве.',fresh:'Получено',fav:'В избранное',removeFav:'Убрать из избранного',costs:'Оценка учитывает две торговые комиссии, проскальзывание и заданную стоимость перевода; не учитывает задержки и полную глубину стакана.'},
+ en:{radar:'Smart Radar',radarLead:'Automatic cross-exchange best ask / best bid comparisons across four exchanges, ranked by estimated net result.',alertOn:'🔔 Alerts enabled',alertOff:'🔔 Enable alerts',threshold:'Min. return',scope:'Show',all:'All estimates',positive:'Possible positive',favorites:'★ Watchlist',from:'Buy on',to:'Sell on',net:'After costs',gross:'Spread',open:'Open calculation',noQuotes:'No exchange quotes yet. Please refresh.',noTwo:'At least two available exchanges are required.',noMatch:'No pairs match your filters.',demo:'DEMO · synthetic quotes',partial:'Partial coverage',live:'Public quotes',stale:'Stale snapshot',depth:'Depth unverified',low:'Not enough size',ready:'Top of book sufficient',disclaimer:'Not a trade signal. Spreads do not confirm cross-exchange transfers or guarantee returns. Prices, order-book depth and fees may change.',alert:'Estimated spread detected',alertNote:'Alerts work only while this page is open and quotes are available. No wallet access required.',portfolioCurrency:'Display currency',purchaseCurrency:'Buy price entered in',purchaseNote:'Converted using the latest available reference rate when added, not the historical purchase-date rate.',currencyMissing:'Reference FX rate unavailable.',pwa:'Install on iPhone:',pwaHelp:'Safari → Share → Add to Home Screen',profileOffline:'Email accounts require a secure backend. Your profile is currently stored only on this device.',fresh:'Received',fav:'Add to watchlist',removeFav:'Remove from watchlist',costs:'Includes two trading fees, configured slippage and transfer cost; excludes delays and deeper order-book liquidity.'}
+};
+const L=k=>TEXT[lang()][k]||k;
+const CC=['PLN','USD','EUR','GBP','UAH','CNY','CHF','JPY','CAD','AUD','SGD','HKD'];
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');return {currency:CC.includes(v.currency)?v.currency:'USD',buyCurrency:CC.includes(v.buyCurrency)?v.buyCurrency:'USD',min:Number.isFinite(v.min)&&v.min>=0.1&&v.min<=50?v.min:1,only:['all','positive','favorites'].includes(v.only)?v.only:'all',alerts:v.alerts===true};}catch{return {currency:'USD',buyCurrency:'USD',min:1,only:'all',alerts:false};}}
+const prefs=load();let snapshotToken='', toastTimer=0,seen=new Map(),alertsPrimed=false;
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(prefs))}catch{}}
+function currencyRates(){if(state.demo)return V6_DEMO_RATES;return assetState?.data?.fxRates?.rates||null;}
+function usdPer(code){if(code==='USD')return 1;const rates=currencyRates(),r=rates?.[code];return Number.isFinite(r)&&r>0?1/r:null;}
+function moneyIn(usd,code){const k=usdPer(code);return Number.isFinite(usd)&&k?`${(usd/k).toLocaleString(lang()==='en'?'en-US':'ru-RU',{maximumFractionDigits:2,minimumFractionDigits:2})} ${code}`:'—';}
+function number(v,max=2){return Number(v).toLocaleString(lang()==='en'?'en-US':'ru-RU',{maximumFractionDigits:max,minimumFractionDigits:2});}
+function feePrefs(){let p={};try{p=JSON.parse(localStorage.getItem('cs-v05-settings')||'{}')||{};}catch{}return {fee:Number.isFinite(+state.fee)?+state.fee:0.1,slippage:Number.isFinite(+p.slippage)&&+p.slippage>=0&&+p.slippage<=5?+p.slippage:.1,transfer:Number.isFinite(+p.transfer)&&+p.transfer>=0&&+p.transfer<=1000?+p.transfer:2};}
+function findRoutes(){const d=state.data;if(!d?.pairs)return [];
+ const p=feePrefs(),amount=state.amount,out=[];
+ for(const pair of d.pairs){
+  if(!pair?.quotes?.length)continue;
+  const quotes=pair.quotes.filter(q=>state.exchanges.has(q.exchange)&&Number.isFinite(q.bid)&&q.bid>0&&Number.isFinite(q.ask)&&q.ask>0);
+  let best=null;
+  for(const buy of quotes)for(const sell of quotes){if(buy.exchange===sell.exchange)continue;
+   const ask=buy.ask*(1+p.slippage/100),bid=sell.bid*(1-p.slippage/100);
+   if(ask<=0||bid<=0)continue;
+   const units=amount/(ask*(1+p.fee/100));const revenue=units*bid*(1-p.fee/100);const profit=revenue-amount-p.transfer;
+   const depth=buy.askQty==null||sell.bidQty==null?'unknown':buy.askQty<units||sell.bidQty<units?'limited':'enough';
+   const item={symbol:pair.symbol,buy:buy.exchange,sell:sell.exchange,ask:buy.ask,bid:sell.bid,profit,percent:profit/amount*100,gross:(sell.bid/buy.ask-1)*100,depth,units};
+   if(!best||item.profit>best.profit)best=item;
+  }
+  if(best)out.push(best);
+ }
+ return out.sort((a,b)=>b.profit-a.profit);
+}
+function fresh(){const time=Date.parse(state.data?.asOf||'');return Number.isFinite(time)&&Date.now()-time<130000;}
+function toast(text){let box=$('v08Toast');if(!box){box=document.createElement('div');box.id='v08Toast';box.className='v08-toast';box.setAttribute('role','status');document.body.append(box);}box.textContent=text;box.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>box.hidden=true,6500);}
+function maybeAlert(rows){if(!prefs.alerts||state.demo||document.hidden||!fresh()||state.data?.availableCount<2)return;
+ const candidates=rows.filter(r=>r.depth==='enough'&&r.percent>=prefs.min);
+ for(const r of candidates){const key=`${r.symbol}:${r.buy}:${r.sell}`;const previous=seen.get(key)||0;const now=Date.now();if(now-previous<10*60*1000)continue;seen.set(key,now);
+ if(!alertsPrimed)continue;
+ toast(`🔔 ${L('alert')}: ${r.symbol} · ${r.buy} → ${r.sell} · +${number(r.percent)}%`);break;
+ }
+ alertsPrimed=true;
+}
+function renderRadar(){const node=$('v08Radar');if(!node)return;
+ node.hidden=state.page!=='home'||state.tab!=='scanner';if(node.hidden)return;
+ $('v08RadarTitle').textContent=L('radar');$('v08RadarIntro').textContent=L('radarLead');$('v08MinLabel').textContent=L('threshold');$('v08FilterLabel').textContent=L('scope');
+ const filter=$('v08Filter');for(const o of filter.options)o.textContent=L(o.value);
+ $('v08Threshold').value=String(prefs.min);filter.value=prefs.only;
+ $('v08Alert').textContent=L(prefs.alerts?'alertOn':'alertOff');$('v08Alert').setAttribute('aria-pressed',String(prefs.alerts));
+ const d=state.data;
+ const badge=state.demo?L('demo'):!fresh()?L('stale'):d?.availableCount===4?L('live'):d?.availableCount>0?L('partial'):L('noQuotes');
+ $('v08Status').textContent=badge+(d?.asOf?` · ${new Date(d.asOf).toLocaleTimeString(lang()==='en'?'en-US':'ru-RU',{hour:'2-digit',minute:'2-digit'})}`:'');
+ const rows=findRoutes();maybeAlert(rows);
+ const visible=rows.filter(r=>(prefs.only==='all'||prefs.only==='positive'&&r.percent>0||prefs.only==='favorites'&&state.favorites.has(r.symbol))).slice(0,6);
+ const grid=$('v08Signals');
+ if(!visible.length){grid.innerHTML=`<div class="v08-empty">${!d?.pairs?.length?L('noQuotes'):d.availableCount<2?L('noTwo'):L('noMatch')}</div>`;}
+ else grid.innerHTML=visible.map(r=>{
+  const flag=r.depth==='enough'?L('ready'):r.depth==='limited'?L('low'):L('depth');
+  return `<article class="v08-signal"><div class="v08-signaltop"><div class="v08-signalasset">${coinIcon(r.symbol,true)}<strong>${escapeHtml(r.symbol)}</strong></div><button class="v08-star" type="button" data-v08-star="${escapeHtml(r.symbol)}" aria-label="${state.favorites.has(r.symbol)?L('removeFav'):L('fav')}" aria-pressed="${state.favorites.has(r.symbol)}">${state.favorites.has(r.symbol)?'★':'☆'}</button></div><div class="v08-route"><span>${L('from')}<br><strong>${r.buy}</strong></span><i aria-hidden="true">→</i><span>${L('to')}<br><strong>${r.sell}</strong></span></div><div class="v08-stats"><div><small>${L('net')}</small><strong style="color:${r.profit>=0?'#80d7ff':'#ffaaa9'}">${r.profit>=0?'+':''}${number(r.profit)} <span style="font-size:10px">USDT</span></strong></div><div style="text-align:right"><small>${L('gross')}: ${r.gross>=0?'+':''}${number(r.gross)}%</small><strong class="v08-pct">${r.percent>=0?'+':''}${number(r.percent)}%</strong></div></div><div class="v08-flags"><span class="v08-flag ${r.depth==='limited'?'bad':''}">${flag}</span><span class="v08-flag">${state.demo?'DEMO':'Spot'}</span></div><button class="v08-open" type="button" data-v08-open="${escapeHtml(r.symbol)}">${L('open')} →</button></article>`;
+ }).join('');
+ $('v08RadarDisclaimer').textContent=L('disclaimer')+' '+L('costs');$('v08AlertHelp').textContent=L('alertNote');
+}
+// Favorites are already supported by the original scanner. Make them easy to reach on hero cards.
+renderSpotlights=function(){const grid=$('coinPulseGrid');if(!grid)return;
+ grid.innerHTML=['BTC','ETH','SOL','XRP'].map((symbol,i)=>{
+  const price=pfQuote(symbol),name=COIN_META[symbol]?.name||symbol,star=state.favorites.has(symbol);
+  return `<article class="pulse-tile" tabindex="0" data-pulse="${symbol}" aria-label="${symbol}"><div class="pulse-head">${coinIcon(symbol)}<span class="pulse-name"><strong>${symbol}</strong><small>${escapeHtml(name)}</small></span></div><button type="button" data-v08-star="${symbol}" class="v08-pulse-star" aria-label="${star?L('removeFav'):L('fav')}" aria-pressed="${star}">${star?'★':'☆'}</button><div class="pulse-bottom"><strong>${price!==null?formatPrice(price):'—'}</strong><span class="pulse-arrow">›</span></div></article>`;
+ }).join('');
+};
+// Add more live-supported crypto and fiat holdings to the existing local portfolio.
+for(const [symbol,name] of COINS){
+ if(['USDC','FDUSD'].includes(symbol))continue;
+ PF.CRYPTO.add(symbol);PF.ALLOWED.add(symbol);
+ if(!PF_ASSETS.some(x=>x[0]===symbol))PF_ASSETS.push([symbol,name,symbol.slice(0,2)]);
+}
+for(const symbol of CC){PF.FIAT.add(symbol);PF.ALLOWED.add(symbol);if(!PF_ASSETS.some(x=>x[0]===symbol))PF_ASSETS.push([symbol,symbol,symbol[0]]);}
+const oldMarket=pfMarket;
+pfMarket=function(){const m=oldMarket();for(const code of CC){const p=usdPer(code);if(p)m.prices[code]=p;}return m;};
+pfFillOptions();
+const prevPortfolio=renderPortfolio;
+renderPortfolio=function(){prevPortfolio();
+ const selector=$('v08Currency');if(!selector)return;
+ $('v08CurrencyLabel').textContent=L('portfolioCurrency');$('v08BuyCurrencyLabel').textContent=L('purchaseCurrency');$('v08PurchaseNote').textContent=L('purchaseNote');
+ selector.value=prefs.currency;$('v08BuyCurrency').value=prefs.buyCurrency;
+ const buyText=document.querySelector('[data-i18n="pfBuy"]');if(buyText)buyText.textContent=(lang()==='en'?'Buy price':'Цена покупки')+' · '+prefs.buyCurrency+' / '+(lang()==='en'?'unit':'ед.');
+ const {usdPln,prices}=pfMarket(),s=PF.summarize(pfState.holdings,prices,usdPln);
+ if(!s.ready)return;
+ $('pfTotal').textContent=moneyIn(s.totalUsd,prefs.currency);
+ $('pfTotalUsd').textContent=moneyIn(s.totalUsd,'USD');
+ const costTitle=document.querySelector('[data-i18n="pfCost"]');if(costTitle)costTitle.textContent=lang()==='en'?'Invested · '+prefs.currency:'Вложено · '+prefs.currency;
+ const pnlTitle=document.querySelector('[data-i18n="pfPnl"]');if(pnlTitle)pnlTitle.textContent=lang()==='en'?'Return · '+prefs.currency:'Результат · '+prefs.currency;
+ $('pfCost').textContent=s.costUsd===null?'—':moneyIn(s.costUsd,prefs.currency);
+ $('pfPnl').textContent=s.pnlUsd===null?'—':(s.pnlUsd>=0?'+':'')+moneyIn(s.pnlUsd,prefs.currency);
+ const holdings=$('pfPositions').querySelectorAll('.portfolio-holding');
+ holdings.forEach((node,i)=>{const h=pfState.holdings[i],p=s.positions.find(x=>x.id===h?.id);const strong=node.querySelector('.portfolio-holding-value strong');if(strong&&p)strong.textContent=moneyIn(p.valueUsd,prefs.currency);const gain=node.querySelector('.portfolio-holding-value span');if(gain&&p?.pnlUsd!==null)gain.textContent=(p.pnlUsd>=0?'+':'')+moneyIn(p.pnlUsd,prefs.currency);});
+};
+// Patch the input label and make FX conversion at the moment of entering a position.
+window.CS08={ toUSD(amount,code){const factor=usdPer(code);if(!Number.isFinite(amount)||amount<0||!factor)return null;return amount*factor;}};
+// Safe UI update on each render: no synthetic market data in live mode.
+const prior=render;
+render=function(){prior();renderRadar();renderPortfolio();$('v08InstallLabel').textContent=L('pwa');$('v08InstallHelp').textContent=L('pwaHelp');const auth=$('v08EmailNotice');if(auth)auth.textContent=L('profileOffline');};
+const options=CC.map(v=>`<option value="${v}">${v}</option>`).join('');
+$('v08Currency').innerHTML=options;$('v08BuyCurrency').innerHTML=options;
+$('v08Currency').value=prefs.currency;$('v08BuyCurrency').value=prefs.buyCurrency;
+$('v08Currency').addEventListener('change',e=>{prefs.currency=e.target.value;persist();renderPortfolio();});
+$('v08BuyCurrency').addEventListener('change',e=>{prefs.buyCurrency=e.target.value;persist();renderPortfolio();});
+$('v08Threshold').addEventListener('change',e=>{const n=Number(e.target.value);if(Number.isFinite(n)&&n>=0.1&&n<=50)prefs.min=n;persist();renderRadar();});
+$('v08Filter').addEventListener('change',e=>{prefs.only=e.target.value;persist();renderRadar();});
+$('v08Alert').addEventListener('click',()=>{prefs.alerts=!prefs.alerts;alertsPrimed=false;seen.clear();persist();renderRadar();if(prefs.alerts)toast(L('alertNote'));});
+// Capture star taps before portfolio spotlight's generic card-open listener.
+for(const id of ['coinPulseGrid','v08Signals'])$(id).addEventListener('click',e=>{
+ const star=e.target.closest('[data-v08-star]');if(star){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();const symbol=star.dataset.v08Star;state.favorites.has(symbol)?state.favorites.delete(symbol):state.favorites.add(symbol);storage.setItem('cs-favorites',JSON.stringify([...state.favorites]));render();return;}
+ const open=e.target.closest('[data-v08-open]');if(open){e.preventDefault();e.stopPropagation();state.page='home';state.tab='scanner';window.v6CompareOpen=true;render();$('v5Coin').value=open.dataset.v08Open;$('v5Coin').dispatchEvent(new Event('change'));$('quickCompare').scrollIntoView({behavior:'smooth',block:'center'});}
+},true);
+$('v08InstallLabel').textContent=L('pwa');$('v08InstallHelp').textContent=L('pwaHelp');
+// Do not offer a broken email form in a static Pages release.
+const auth=$('v08EmailNotice');if(auth)auth.textContent=L('profileOffline');
+const form=$('authForm');if(form){form.querySelectorAll('input,button').forEach(input=>input.disabled=true);}
+ const pfForm=$('portfolioAdd');if(pfForm)pfForm.addEventListener('submit',e=>{
+   if(prefs.buyCurrency==='USD')return;
+   const input=$('pfBuy'),value=Number(input.value),usd=window.CS08.toUSD(value,prefs.buyCurrency);
+   if(!Number.isFinite(usd)){e.preventDefault();e.stopImmediatePropagation();$('pfFeedback').textContent=L('currencyMissing');return;}
+   input.value=String(usd);
+ },true);
+// A different UI currency never changes the PLN-denominated Reality Check target.
+let paletteInitialized=false;try{paletteInitialized=!!localStorage.getItem('cs-v08-palette')}catch{}
+if(!paletteInitialized){state.accent='blue';if(state.profile.avatar==='mint')state.profile.avatar='blue';storage.setItem('cs-accent','blue');try{localStorage.setItem('cs-v08-palette','azure')}catch{}applyAppearance();}
+render();
+})();
+
 </script>
 </body>
 </html>
