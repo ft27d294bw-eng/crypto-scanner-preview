@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080c12">
+  <meta name="description" content="Crypto Scanner — live spot market spread scanner across Binance, Bybit, OKX and MEXC. Educational analytics, not trading advice.">
+  <meta name="color-scheme" content="dark light">
+  <title>Crypto Scanner — Market Workspace</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" href="/assets/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+  <script src="/extras.js" defer></script>
+  <script src="/portfolio-engine.js" defer></script>
+  <script src="/portfolio.js" defer></script>
+  <script src="/v05.js" defer></script>
+  <script src="/fx-engine.js" defer></script>
+  <script src="/v06.js" defer></script>
+  <script src="/preview-banner.js" defer></script>
+  <link rel="stylesheet" href="/extras.css">
+  <link rel="stylesheet" href="/v04.css">
+  <link rel="stylesheet" href="/v05.css">
+  <link rel="stylesheet" href="/v06.css">
+  <link rel="stylesheet" href="/preview-banner.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Crypto Scanner">
+        <span class="brand-symbol"><span></span><span></span><span></span><span></span></span>
+        <span class="brand-words">CRYPTO<span>SCANNER</span><small>MARKET INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-label" data-i18n="workspace">РАБОЧАЯ ОБЛАСТЬ</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" data-tab="scanner">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17h7m-3.5-3.5v7"/></svg>
+          <span data-i18n="scanner">Сканер</span><span class="nav-arrow">↗</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="markets">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9"/><path d="M16 6h5v5"/></svg>
+          <span data-i18n="markets">Рынки</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="favorites">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.85 5.77 6.37.93-4.61 4.49 1.09 6.35L12 17.34 6.3 20.34l1.1-6.35L2.8 9.5l6.37-.93L12 2.8z"/></svg>
+          <span data-i18n="favorites">Избранное</span><span id="favoritesCount" class="nav-count">0</span>
+        </button>
+      </nav>
+      <div class="side-divider"></div>
+      <div class="nav-label" data-i18n="assetNavigation">АКТИВЫ</div>
+      <nav class="side-nav">
+        <button type="button" class="nav-item" data-nav-target="fiat"><span class="side-icon">＄</span><span data-i18n="fiat">Валюты</span></button>
+        <button type="button" class="nav-item" data-nav-target="investments"><span class="side-icon">✧</span><span data-i18n="investments">Инвестиции</span></button>
+        <button type="button" class="nav-item" data-nav-target="portfolio"><span class="side-icon">◫</span><span data-i18n="portfolioTab">Портфель</span></button>
+      </nav><div class="side-divider"></div>
+      <div class="nav-label" data-i18n="information">ИНФОРМАЦИЯ</div>
+      <nav class="side-nav"><button type="button" class="nav-item" data-tab="guide">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6m0-9v.2"/></svg>
+        <span data-i18n="howItWorks">Как это работает</span>
+      </button></nav>
+      <div class="sidebar-bottom">
+        <div class="side-quiet-card">
+          <span class="side-quiet-icon">✦</span>
+          <strong data-i18n="sideTitle">Меньше шума. Больше данных.</strong>
+          <p data-i18n="sideDesc">Сравнивайте биржи в одном месте, без аккаунта и API-ключей.</p>
+        </div>
+        <div class="side-langs"><span data-i18n="language">ЯЗЫК</span><div class="lang-switch"><button type="button" data-lang="ru" class="active">RU</button><button type="button" data-lang="en">EN</button></div></div>
+        <div class="side-foot">© 2026 Crypto Scanner <span>v0.6.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-wordmark"><span class="mobile-logo">✳</span><strong>CRYPTO<span>SCANNER</span></strong></div>
+        <div class="crumb"><span class="crumb-muted" data-i18n="platform">ПЛАТФОРМА</span><span class="crumb-slash">/</span><span id="pageCrumb" data-i18n="overview">Обзор рынка</span></div>
+        <div class="top-actions">
+          <div class="top-status" id="topStatus"><span class="status-dot"></span><span data-i18n="connecting">ПОДКЛЮЧЕНИЕ...</span></div>
+          <button class="icon-btn" id="refreshButton" type="button" title="Refresh" aria-label="Refresh market data">
+            <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.4 6.2"/><path d="M20 4v7h-7"/></svg>
+          </button>
+          <button type="button" class="top-avatar avatar-launch" data-page="profile" aria-label="Open profile" id="topAvatar">CS</button>
+        </div>
+      </header>
+
+      <div class="content-inner">
+        <div class="home-subnav" id="homeSubnav" aria-label="Market sections">
+          <button type="button" class="subnav-chip active" data-tab="scanner" data-i18n="scanner">Сканер</button>
+          <button type="button" class="subnav-chip" data-tab="markets" data-i18n="markets">Рынки</button>
+          <button type="button" class="subnav-chip" data-tab="favorites" data-i18n="favorites">Избранное</button>
+          <button type="button" class="subnav-chip" data-tab="guide" data-i18n="howItWorks">Как это работает</button>
+        </div>
+        <section class="coin-pulse" id="coinPulse" aria-label="Market highlights"><div id="coinPulseGrid" class="coin-pulse-grid"></div></section>
+        <section class="hero" id="hero">
+          <div class="hero-glow"></div>
+          <div class="hero-left">
+            <div class="hero-eyebrow"><span class="tiny-sparkle">✦</span><span data-i18n="heroEyebrow">ВАШ ТЕРМИНАЛ. ВАШЕ ПРЕИМУЩЕСТВО.</span></div>
+            <h1><span data-i18n="heroLine1">Замечайте разницу.</span><br><em data-i18n="heroLine2">Раньше других.</em></h1>
+            <p data-i18n="heroText">Сравнивайте цены покупки и продажи на четырёх криптобиржах. Находите ценовые расхождения за секунды.</p>
+            <div class="hero-exchanges"><span data-i18n="poweredBy">ДАННЫЕ С БИРЖ</span><div class="exchange-chips"><span>Binance</span><span>Bybit</span><span>OKX</span><span>MEXC</span></div></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-3"></div><div class="orbit orbit-2"></div><div class="orbit orbit-1"></div>
+            <div class="orbit-core"><span>↗</span></div>
+            <div class="orbital-node node-a">BTC <span>↗</span></div>
+            <div class="orbital-node node-b">ETH <span>↗</span></div>
+            <div class="orbital-node node-c">SOL <span>↗</span></div>
+            <div class="orbital-grid"></div>
+          </div>
+        </section>
+
+        <section class="metrics" id="metrics">
+          <div class="metric-card"><span class="metric-kicker" data-i18n="trackedPairs">АКТИВНЫЕ ПАРЫ</span><div class="metric-main"><strong id="metricPairs">—</strong><span class="metric-icon">◈</span></div><div class="metric-sub" data-i18n="trackedDesc">Спотовые пары к USDT</div></div>
+          <div class="metric-card"><span class="metric-kicker" data-i18n="positiveSpreads">ПОЛОЖИТЕЛЬНЫЙ РАСЧЁТ</span><div class="metric-main"><strong id="metricPositive">—</strong><span class="metric-icon metric-green">↗</span></div><div class="metric-sub" data-i18n="positiveDesc">Без расходов на перевод</div></div>
+          <div class="metric-card"><span class="metric-kicker" data-i18n="bestGap">ЛУЧШИЙ СПРЕД</span><div class="metric-main"><strong id="metricSpread">—</strong><span class="metric-icon">✳</span></div><div class="metric-sub" id="metricBestCoin">—</div></div>
+          <div class="metric-card"><span class="metric-kicker" data-i18n="exchangesOnline">БИРЖИ В СЕТИ</span><div class="metric-main"><strong id="metricExchanges">—</strong><span class="metric-icon metric-purple">◎</span></div><div class="metric-sub" data-i18n="autoUpdate">Автообновление 45 сек.</div></div>
+        </section>
+
+        <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+
+
+        <div class="v6-compare-launcher" id="v6CompareLauncher" hidden>
+          <div class="v6-compare-launcher-symbol" aria-hidden="true">⇄</div>
+          <div><strong data-v6="compareShortcut">Лаборатория бирж</strong><p data-v6="compareShortcutDesc">Сравнить цены покупки и продажи на 4 биржах с учётом расходов</p></div>
+          <button type="button" id="v6CompareToggle" class="v6-compare-toggle" aria-controls="quickCompare" aria-expanded="false"><span data-v6="openCompare">Открыть расчёт</span> <span aria-hidden="true">↗</span></button>
+        </div>
+        <section class="quick-compare glass-panel" id="quickCompare" hidden aria-labelledby="compareHeading">
+          <div class="v5-row v5-compare-title"><div><span class="v5-eyebrow" data-v5="compareBadge">EXCHANGE LAB · LIVE / DEMO</span><h2 id="compareHeading" data-v5="compareTitle">Сравнение бирж</h2><p data-v5="compareLead">Купить дешевле, продать дороже — с учётом реальных bid/ask и расходов.</p></div><span class="v5-orb">⇄</span></div>
+          <div class="v5-toolbar"><label><span data-v5="coinSelect">Монета</span><select id="v5Coin" aria-label="Crypto pair"><option value="BTC">BTC / USDT</option></select></label><label><span data-v5="buyWhere">Купить на</span><select id="v5BuyExchange"></select></label><label><span data-v5="sellWhere">Продать на</span><select id="v5SellExchange"></select></label></div>
+          <div class="v5-exchange-stats"><div><small data-v5="bestAsk">Цена покупки (ask)</small><strong id="v5Ask">—</strong><span id="v5AskVenue">—</span></div><span class="v5-exchange-arrow">→</span><div><small data-v5="bestBid">Цена продажи (bid)</small><strong id="v5Bid">—</strong><span id="v5BidVenue">—</span></div></div>
+          <div class="v5-profitline"><div><small data-v5="netResult">Возможный результат</small><strong id="v5Net">—</strong><span id="v5NetPct">—</span></div><div><small data-v5="grossSpread">Разница до расходов</small><strong id="v5Gross">—</strong><span id="v5Depth">—</span></div></div>
+          <div class="v5-charges" id="v5Charges">—</div>
+          <p class="v5-compare-note" data-v5="compareWarning">Это оценка, а не гарантированный арбитраж. Глубина стакана, ограничения переводов, сети, сроки, KYC и изменение цен могут сделать сделку убыточной.</p>
+        </section>
+
+        <section class="terminal" id="terminal">
+          <div class="terminal-head">
+            <div><div class="section-eyebrow"><span class="accent-line"></span><span data-i18n="realTimeData">РЕАЛЬНЫЕ РЫНОЧНЫЕ ДАННЫЕ</span></div><h2 id="tableHeading" data-i18n="opportunities">Поиск расхождений</h2><p class="section-subtitle" id="tableSubtitle" data-i18n="tableDesc">Сравнение лучших цен bid / ask между биржами</p></div>
+            <div class="head-actions"><button type="button" class="ghost-btn" id="exportButton"><svg viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 18v3h16v-3"/></svg><span data-i18n="exportCsv">Экспорт CSV</span></button></div>
+          </div>
+          <div class="filters">
+            <label class="search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg><input id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Поиск: BTC, ETH, SOL..." autocomplete="off" aria-label="Search pairs"></label>
+            <div class="filter-pills" id="filterPills"><button type="button" class="filter-pill active" data-filter="all" data-i18n="allPairs">Все пары</button><button type="button" class="filter-pill" data-filter="positive" data-i18n="profitOnly">Плюс после комиссий</button><button type="button" class="filter-pill" data-filter="watchlist" data-i18n="watchlist">★ Избранное</button></div>
+            <div class="filters-right"><span class="filter-text" data-i18n="sortBy">Сортировка:</span><select id="sortSelect" aria-label="Sort results"><option value="net" data-i18n="sortProfit">Доходность</option><option value="gross" data-i18n="sortGap">Спред</option><option value="symbol" data-i18n="sortName">Название</option></select></div>
+          </div>
+          <div class="exchange-filter"><span data-i18n="compare">СРАВНИВАТЬ</span><div id="exchangeControls" class="exchange-controls"></div></div>
+          <div class="table-scroll"><table class="market-table"><thead id="tableHeader"></thead><tbody id="tableRows"><tr><td colspan="6"><div class="loading-rows"><span class="spinner"></span> <span data-i18n="loading">Загрузка котировок...</span></div></td></tr></tbody></table></div>
+          <div class="show-more-wrap" id="showMoreWrap"><button id="showMoreButton" type="button" class="show-more-btn" data-i18n="moreCoins">Показать ещё 12 монет ↓</button></div>
+          <div class="table-bottom"><div id="resultCount">—</div><div><span class="small-live-dot"></span><span id="lastSyncText" data-i18n="waitingSync">Ожидаем данные</span></div></div>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="calc-card">
+            <div class="card-upper"><div><div class="section-eyebrow"><span class="accent-line"></span><span data-i18n="simulator">СИМУЛЯТОР</span></div><h3 data-i18n="tradeSettings">Параметры расчёта</h3></div><span class="calc-symbol">∑</span></div>
+            <div class="calc-row"><div><label for="tradeSize" data-i18n="tradeAmount">Сумма сделки</label><p data-i18n="tradeAmountHint">Виртуальный бюджет, USDT</p></div><div class="value-input"><input id="tradeSize" type="number" min="10" max="100000" step="10" value="500" inputmode="decimal" aria-label="Trade size"><span>USDT</span></div></div>
+            <div class="calc-row"><div><label for="feeInput" data-i18n="feeEach">Комиссия за операцию</label><p data-i18n="feeHint">Учитывается при покупке и продаже</p></div><div class="value-input small"><input id="feeInput" type="number" min="0" max="3" step="0.01" value="0.1" inputmode="decimal" aria-label="Fee per side"><span>%</span></div></div>
+            <div class="calc-note"><span>ⓘ</span><p data-i18n="calcDisclaimer">Расчёт ориентировочный. Не включены комиссии вывода, стоимость перевода, проскальзывание и задержки. Учитывается только лучшая заявка книги ордеров.</p></div>
+          </article>
+          <article class="signal-card"><div class="card-upper"><div><div class="section-eyebrow"><span class="accent-line"></span><span data-i18n="topSignal">ЛУЧШЕЕ СЕЙЧАС</span></div><h3 data-i18n="featuredOpportunity">Лидирующее расхождение</h3></div><span class="signal-mark">↗</span></div><div id="featuredSignal" class="featured-body"><div class="loading-inline"><span class="spinner"></span></div></div></article>
+        </section>
+        <footer class="footer"><span data-i18n="footerText">Аналитика для ознакомления. Не финансовый совет. Без подключения кошельков и исполнения сделок.</span><span>CRYPTO SCANNER / © 2026</span></footer>
+
+        <section class="app-page markets-page" id="fiatPage" hidden>
+          <div class="page-eyebrow"><span class="live-spark"></span><span data-i18n="globalMarkets">GLOBAL MARKETS</span></div>
+          <div class="page-title-row"><div><h1 data-i18n="fiatTitle">Валютный рынок<span class="title-dot">.</span></h1><p data-i18n="fiatLead">Динамика курсов мировых валют — без лишнего шума.</p></div><span class="page-decoration">＄</span></div>
+          <div class="market-hero glass-panel fx-hero"><div><span class="mini-eyebrow" data-i18n="fxOverview">CURRENCY INTELLIGENCE</span><h2 data-i18n="fxHeroTitle">Все валюты. Один экран.</h2><p data-i18n="fxHeroDesc">Сравнивайте пары, тренды и изменения за последние торговые дни.</p><div class="market-hero-note" id="fxDataNote">—</div></div><div class="market-hero-symbol">$<span>€</span></div></div>
+          <section class="v6-fx-panel glass-panel" aria-labelledby="v6FxTitle">
+           <div class="v6-fx-heading"><div><span class="v6-eyebrow" data-v6="currencyLab">FX CONVERTER · 20+ CURRENCIES</span><h2 id="v6FxTitle" data-v6="fxConverter">Конвертер валют</h2><p data-v6="fxConverterLead">Выберите любые две основные валюты. Данные — справочные, а не курс обменника.</p></div><span class="v6-fx-hero-icon" aria-hidden="true">＄</span></div>
+           <div class="v6-fx-form">
+             <label class="v6-fx-amount"><span data-v6="amountLabel">Сумма</span><input type="number" id="v6Amount" value="100" min="0" max="1000000000" step="any" inputmode="decimal" aria-label="Amount to convert"></label>
+             <label><span data-v6="fromLabel">Из валюты</span><select id="v6From" aria-label="From currency"></select></label>
+             <button type="button" id="v6Swap" class="v6-fx-swap" aria-label="Swap currencies" title="Swap currencies">⇄</button>
+             <label><span data-v6="toLabel">В валюту</span><select id="v6To" aria-label="To currency"></select></label>
+           </div>
+           <div class="v6-fx-output"><div><span class="v6-converted-label" data-v6="conversionResult">Результат пересчёта</span><strong id="v6Converted" aria-live="polite">—</strong><span class="v6-one-unit" id="v6UnitRate">—</span></div><div class="v6-fx-direction"><span id="v6RateChange">—</span><small id="v6RateDate">—</small></div></div>
+           <div class="v6-fx-favorites"><span data-v6="quickPairs">Быстрый выбор</span><div id="v6CommonPairs" class="v6-pair-chips"></div><button type="button" id="v6SaveFx" class="v6-save-pair" aria-pressed="false" data-v6="addFavoritePair">☆ Сохранить пару</button></div>
+           <div class="v6-fx-source" id="v6FxSource" role="status" aria-live="polite"></div>
+          </section>
+          <div class="market-toolbar"><div><span class="section-eyebrow" data-i18n="fxPairs">ВАЛЮТНЫЕ ПАРЫ</span><h2 data-i18n="fiatWatch">Валюты под наблюдением</h2></div><button class="glass-refresh" type="button" data-market-refresh="1"><span>⟳</span> <span data-i18n="refreshMarkets">Обновить</span></button></div>
+          <div class="asset-grid" id="fxGrid"></div><div class="v6-show-fx-wrap"><button type="button" id="v6ShowFx" class="v6-show-fx" data-v6="showFxMore">Показать все валютные пары ↓</button></div><p class="market-disclaimer" data-i18n="fxDisclaimer">Справочные курсы обновляются по рабочим дням, не являются котировками для мгновенной сделки.</p>
+        </section>
+        <section class="app-page markets-page" id="investmentsPage" hidden>
+          <div class="page-eyebrow"><span class="live-spark"></span><span data-i18n="investmentResearch">COMMODITIES & INVESTMENTS</span></div>
+          <div class="page-title-row"><div><h1 data-i18n="investmentsTitle">Инвестиции<span class="title-dot">.</span></h1><p data-i18n="investmentsLead">Золото, серебро и важные показатели — в одной ленте.</p></div><span class="page-decoration">✧</span></div>
+          <div class="market-hero glass-panel gold-hero"><div><span class="mini-eyebrow" data-i18n="preciousMetals">PRECIOUS METALS</span><h2 data-i18n="goldHeroTitle">Реальные активы. Ясная картина.</h2><p data-i18n="goldHeroDesc">Отслеживайте металлы с указанием источника и времени котировки.</p></div><div class="gold-illustration"><div class="gold-orbit"></div><span>Au</span><small>79</small></div></div>
+          <div class="market-toolbar"><div><span class="section-eyebrow" data-i18n="metalsTitle">ДРАГОЦЕННЫЕ МЕТАЛЛЫ</span><h2 data-i18n="metalsWatch">Золото и серебро</h2></div><button class="glass-refresh" type="button" data-market-refresh="1"><span>⟳</span> <span data-i18n="refreshMarkets">Обновить</span></button></div>
+          <div class="asset-grid" id="metalGrid"></div><p class="market-disclaimer" data-i18n="metalDisclaimer">Цены в USD за тройскую унцию. Бесплатные котировки металлов могут запаздывать на 15 минут.</p><p class="market-attribution"><span data-i18n="metalProvided">Данные металлов:</span> <a href="https://goldprice.dev" target="_blank" rel="noopener noreferrer">goldprice.dev</a></p>
+        </section>
+        
+        <section class="app-page portfolio-page" id="portfolioPage" hidden>
+          <div class="portfolio-intro">
+            <div><div class="page-eyebrow"><span class="live-spark"></span> <span data-i18n="pfEyebrow">ВАШИ АКТИВЫ · ВАШ ПЛАН</span></div><h1 data-i18n="pfTitle">Мой портфель</h1><p data-i18n="pfLead">Крипта, золото и валюты в одном месте. Без подключения кошелька.</p></div>
+            <div class="portfolio-intro-actions"><button id="portfolioSample" type="button" class="glass-refresh" data-i18n="pfSample">Пример портфеля</button><button id="portfolioClear" type="button" class="glass-refresh subtle" data-i18n="pfClear">Очистить</button></div>
+          </div>
+          <div class="portfolio-kpis">
+            <article class="portfolio-kpi portfolio-kpi-main"><div class="portfolio-kpi-label" data-i18n="pfTotal">Стоимость портфеля</div><strong id="pfTotal">—</strong><span id="pfTotalUsd">—</span><div class="portfolio-kpi-sheen"></div></article>
+            <article class="portfolio-kpi"><div class="portfolio-kpi-label" data-i18n="pfCost">Вложено · эквивалент USD</div><strong id="pfCost">—</strong><span data-i18n="pfCostNote">По введённой средней цене</span></article>
+            <article class="portfolio-kpi"><div class="portfolio-kpi-label" data-i18n="pfPnl">Результат · USD</div><strong id="pfPnl">—</strong><span id="pfPnlPct">—</span></article>
+          </div>
+          <div class="portfolio-grid">
+            <div class="portfolio-table-panel glass-panel">
+              <div class="pf-section-heading"><div><span class="mini-eyebrow" data-i18n="pfPositions">МОИ ПОЗИЦИИ</span><h2 data-i18n="pfHoldings">Активы и баланс</h2></div><span id="pfCount" class="pf-count">0</span></div>
+              <div class="portfolio-positions" id="pfPositions" aria-live="polite"></div>
+              <div class="pf-note" id="pfSourceNote"></div>
+            </div>
+            <form id="portfolioAdd" class="portfolio-entry glass-panel">
+              <span class="mini-eyebrow" data-i18n="pfAddEyebrow">ДОБАВИТЬ АКТИВ</span><h2 data-i18n="pfAddTitle">Новая позиция</h2>
+              <label class="pf-field"><span data-i18n="pfAsset">Актив</span><select id="pfAsset" required></select></label>
+              <div class="pf-entry-row"><label class="pf-field"><span data-i18n="pfQty">Количество</span><input id="pfQty" type="number" min="0.00000001" max="100000000000" step="any" inputmode="decimal" placeholder="0.50" required></label><label class="pf-field"><span data-i18n="pfBuy">Цена покупки · USD / ед.</span><input id="pfBuy" type="number" min="0" max="10000000000" step="any" inputmode="decimal" placeholder="0.00" required></label></div>
+              <p class="pf-note" data-i18n="pfCostHint">Для PLN и других валют укажите стоимость одной единицы в USD на дату покупки. Если не знаете, оставьте 0 — результат P/L будет неполным.</p>
+              <button class="pf-primary" type="submit"><span data-i18n="pfAdd">Добавить в портфель</span> <span>＋</span></button><p class="pf-feedback" id="pfFeedback" aria-live="polite"></p>
+            </form>
+          </div>
+          <section class="reality-section" id="realitySection">
+            <div class="reality-header"><div><span class="reality-badge">✧ REALITY CHECK</span><h2 data-i18n="realityTitle">Не просто цифра. Реальная цель.</h2><p data-i18n="realityLead">Что будет с вашими деньгами, если крипта упадёт, золото вырастет, а злотый изменит курс? Проверьте сценарий, прежде чем принимать решение.</p></div><div class="reality-icon">◈<span>↗</span></div></div>
+            <div class="reality-layout">
+              <div class="reality-controls">
+                <div class="reality-goal-row"><label class="pf-field"><span data-i18n="realityGoal">Цена вашей цели · PLN</span><input id="goalCost" type="number" min="1" max="10000000000" step="any" value="50000"></label><label class="pf-field"><span data-i18n="realityGoalName">Название цели</span><input id="goalName" maxlength="48" data-i18n-placeholder="goalSample" placeholder="Моя цель"></label></div>
+                <div class="reserve-strip"><div class="reserve-symbol">♧</div><div class="reserve-label"><strong data-i18n="reserveTitle">Неприкосновенный резерв</strong><span data-i18n="reserveHint">Сколько PLN вы хотите оставить после покупки?</span></div><label><input id="reservePln" type="number" min="0" max="10000000000" step="any" value="10000" aria-label="Emergency reserve in PLN"><span>PLN</span></label></div>
+                <div class="scenario-presets"><button type="button" class="scenario-preset active" data-scenario="neutral" data-i18n="scNeutral">Сегодня</button><button type="button" class="scenario-preset" data-scenario="bear" data-i18n="scBear">Падение</button><button type="button" class="scenario-preset" data-scenario="growth" data-i18n="scGrowth">Рост</button><button type="button" class="scenario-preset" data-scenario="custom" data-i18n="scCustom">Мой сценарий</button></div>
+                <div class="scenario-slider-row"><div><label for="scCrypto" data-i18n="scCrypto">Криптовалюты</label><output id="scCryptoValue">0%</output></div><input type="range" id="scCrypto" min="-80" max="100" step="5" value="0"></div>
+                <div class="scenario-slider-row"><div><label for="scMetals" data-i18n="scMetals">Золото и серебро</label><output id="scMetalsValue">0%</output></div><input type="range" id="scMetals" min="-60" max="100" step="5" value="0"></div>
+                <div class="scenario-slider-row"><div><label for="scUsdPln" data-i18n="scUsdPln">USD/PLN — изменение курса</label><output id="scUsdPlnValue">0%</output></div><input type="range" id="scUsdPln" min="-30" max="40" step="2" value="0"></div>
+                <div class="scenario-slider-row"><div><label for="scInflation" data-i18n="scInflation">Рост цены цели</label><output id="scInflationValue">0%</output></div><input type="range" id="scInflation" min="0" max="40" step="2" value="0"></div>
+              </div>
+              <div class="reality-result">
+                <div class="reality-result-top"><span data-i18n="realityAfter">Портфель после сценария</span><span id="realityMode">SIMULATION</span></div>
+                <strong id="realityPortfolio">—</strong>
+                <div id="realityDelta" class="reality-delta">—</div>
+                <div class="reality-progress-label"><span id="realityGoalLabel">Моя цель</span><strong id="realityProgressPct">—</strong></div>
+                <div class="reality-track"><span id="realityBar"></span></div>
+                <div class="reality-outcome" id="realityOutcome">—</div><div class="reserve-outcome"><span data-i18n="spendableTitle">Доступно после резерва</span><strong id="realitySpendable">—</strong></div>
+                <div class="reality-numbers"><div><span data-i18n="realityGoalCost">Цена цели</span><strong id="realityCost">—</strong></div><div><span data-i18n="realityGap">Разница</span><strong id="realityGap">—</strong></div></div>
+                <p class="reality-legal" data-i18n="realityDisclaimer">Гипотетическая модель, а не прогноз. Не учитывает налоги, торговые комиссии, инфляцию других товаров и корреляции активов. Только для планирования.</p>
+              </div>
+            </div>
+          </section>
+          <p class="pf-privacy" data-i18n="pfPrivacy">🔒 Портфель хранится только в этом браузере (отдельно для каждого email на устройстве). Синхронизация позиций между устройствами пока не реализована. В демо используются условные цены.</p>
+        </section>
+
+        <section class="app-page profile-page" id="profilePage" hidden aria-labelledby="profileHeading">
+          <div class="page-eyebrow"><span class="live-spark"></span><span data-i18n="personalSpace">ВАШЕ ПРОСТРАНСТВО</span></div>
+          <div class="page-title-row"><div><h1 id="profileHeading" data-i18n="profileTitle">Ваш профиль<span class="title-dot">.</span></h1><p data-i18n="profileLead">Настройте, как вы будете выглядеть в Crypto Scanner.</p></div><span class="page-decoration">✳</span></div>
+
+          <section class="v5-profile-assist glass-panel" aria-label="Quick profile editor"><div class="v5-row"><div><span class="v5-eyebrow" data-v5="quickProfile">БЫСТРОЕ ЗАПОЛНЕНИЕ</span><h2 data-v5="profileAssistant">Профиль за 30 секунд</h2><p data-v5="profileAssistantDesc">Пара простых шагов — и всё готово.</p></div><span class="v5-orb">✦</span></div><div class="v5-row v5-profile-actions"><button type="button" id="v5SuggestHandle" class="v5-pill" data-v5="suggestNickname">Предложить никнейм</button><button type="button" id="v5BioPreset" class="v5-pill" data-v5="addBio">Добавить описание</button><button type="button" id="v5FocusAvatar" class="v5-pill" data-v5="choosePhoto">Загрузить фото</button></div><div class="v5-profile-meter"><span data-v5="profileFilled">Заполнено</span><strong id="v5ProfilePercent">0%</strong><div class="v5-meter-track"><i id="v5ProfileTrack"></i></div></div></section>
+
+          <div class="profile-layout">
+            <div class="profile-glass-card glass-panel">
+              <div class="profile-cover"><span class="cover-glint"></span><span class="cover-mark">CRYPTO SCANNER <b>✦</b> 2026</span></div>
+              <div class="profile-card-content">
+                <div class="big-avatar" id="profileAvatar">CS</div>
+                <div class="profile-identity"><h2 id="profileDisplayName">Crypto Explorer</h2><p id="profileDisplayHandle">@explorer</p></div>
+                <p class="profile-bio" id="profileDisplayBio"></p>
+                <div class="profile-chips"><span class="profile-chip"><span class="chip-dot"></span><span data-i18n="localProfile">Локальный профиль</span></span><span class="profile-chip">✦ <span data-i18n="memberBadge">Member · 2026</span></span></div>
+                <div class="profile-statrow"><div><strong id="profileFavCount">0</strong><span data-i18n="savedCoins">Избранных монет</span></div><div class="profile-stat-divider"></div><div><strong>04</strong><span data-i18n="trackedExchanges">Биржи</span></div></div>
+              </div>
+            </div>
+            <form class="profile-editor glass-panel" id="profileForm">
+              <div class="panel-heading"><div><span class="mini-eyebrow" data-i18n="editDetails">ЛИЧНЫЕ ДАННЫЕ</span><h2 data-i18n="editProfile">Редактировать профиль</h2></div><span class="heading-icon">✎</span></div>
+              <label class="field"><span data-i18n="displayName">Имя</span><input id="profileName" autocomplete="nickname" maxlength="32" placeholder="Crypto Explorer" required></label>
+              <label class="field"><span data-i18n="username">Никнейм</span><span class="handle-wrap"><span>@</span><input id="profileHandle" maxlength="24" inputmode="text" pattern="[a-zA-Z0-9_]{3,24}" autocomplete="off" placeholder="explorer" required></span></label>
+              <label class="field"><span data-i18n="aboutYou">О себе</span><textarea id="profileBio" maxlength="160" rows="3" data-i18n-placeholder="bioPlaceholder" placeholder="Находите возможности. Следите за рынком."></textarea></label>
+              <div class="field color-field"><span data-i18n="avatarColor">Цвет аватара</span><div class="avatar-swatches" id="avatarSwatches"><button type="button" data-avatar="violet" style="--swatch:#8779ed" aria-label="Violet" class="active"></button><button type="button" data-avatar="mint" style="--swatch:#64d0ad" aria-label="Mint"></button><button type="button" data-avatar="blue" style="--swatch:#74baf2" aria-label="Blue"></button><button type="button" data-avatar="amber" style="--swatch:#e8b16c" aria-label="Amber"></button><button type="button" data-avatar="rose" style="--swatch:#e98cae" aria-label="Rose"></button></div></div>
+              <div class="avatar-upload-zone">
+                <div class="upload-symbol">◉</div><div><strong data-i18n="uploadAvatar">Загрузить фото</strong><p data-i18n="uploadAvatarHint">JPG, PNG или WebP · до 3 МБ</p></div>
+                <label class="secondary-action" for="avatarFile" data-i18n="choosePhoto">Выбрать</label>
+                <input type="file" id="avatarFile" accept="image/png,image/jpeg,image/webp" hidden>
+                <button type="button" id="removeAvatar" class="remove-avatar" data-i18n="removePhoto" hidden>Убрать</button>
+              </div>
+              <div class="profile-footer"><button type="submit" class="primary-action" id="saveProfile"><span data-i18n="saveChanges">Сохранить изменения</span> <span>↗</span></button><p class="tiny-info" data-i18n="localOnly">Данные хранятся только в этом браузере. Это не онлайн-аккаунт.</p><p class="save-feedback" id="profileSaved" role="status" aria-live="polite"></p></div>
+            </form>
+          </div>
+          <section class="auth-card glass-panel" aria-labelledby="authTitle">
+            <div class="auth-head"><div><span class="mini-eyebrow" data-i18n="authEyebrow">ВАШ АККАУНТ</span><h2 id="authTitle" data-i18n="account">Аккаунт по email</h2><p data-i18n="authLead">Синхронизация профиля между устройствами после подтверждения email.</p></div><span class="auth-glyph">✳</span></div>
+            <div id="authLoggedIn" hidden><div class="auth-user"><span class="auth-online-dot"></span><div><strong id="authEmail"></strong><small data-i18n="emailVerified">Email подтверждён</small></div></div><button id="logoutButton" type="button" class="secondary-action" data-i18n="logout">Выйти</button></div>
+            <div id="authLoggedOut"><div class="auth-tabs"><button type="button" class="active" data-auth-tab="register" data-i18n="register">Регистрация</button><button type="button" data-auth-tab="login" data-i18n="signIn">Войти</button></div>
+              <form id="authForm"><div class="auth-inputs"><label class="field"><span>Email</span><input type="email" id="authEmailInput" autocomplete="email" placeholder="name@example.com" required></label><label class="field"><span data-i18n="password">Пароль</span><input type="password" id="authPassword" minlength="10" autocomplete="new-password" placeholder="••••••••••" required></label></div><button type="submit" class="primary-action auth-submit" id="authSubmit" data-i18n="createAccount">Создать аккаунт</button></form>
+              <div class="auth-help" data-i18n="authHelper">После регистрации подтвердите адрес по ссылке из письма.</div></div>
+            <p class="auth-message" role="status" id="authMessage" aria-live="polite"></p>
+          </section>
+        </section>
+
+        <section class="app-page settings-page" id="settingsPage" hidden aria-labelledby="settingsHeading">
+          <div class="page-eyebrow"><span class="live-spark"></span><span data-i18n="preferences">ПЕРСОНАЛИЗАЦИЯ</span></div>
+          <div class="page-title-row"><div><h1 id="settingsHeading" data-i18n="settingsTitle">Настройки<span class="title-dot">.</span></h1><p data-i18n="settingsLead">Crypto Scanner под ваши привычки.</p></div><span class="page-decoration">✧</span></div>
+          <div class="settings-stack">
+            <div class="settings-card glass-panel"><div class="settings-icon">◎</div><div class="settings-main"><h2 data-i18n="appearanceTitle">Внешний вид</h2><p data-i18n="appearanceDescription">Выберите оформление интерфейса.</p><div class="theme-options" role="group" aria-label="Theme">
+              <button type="button" data-theme-choice="dark" class="theme-choice"><span class="theme-preview preview-dark"><i></i><i></i><i></i></span><span data-i18n="darkMode">Темная</span><span class="check-circle">✓</span></button>
+              <button type="button" data-theme-choice="light" class="theme-choice"><span class="theme-preview preview-light"><i></i><i></i><i></i></span><span data-i18n="lightMode">Светлая</span><span class="check-circle">✓</span></button>
+              <button type="button" data-theme-choice="system" class="theme-choice"><span class="theme-preview preview-system"><i></i><i></i><i></i></span><span data-i18n="systemMode">Как в системе</span><span class="check-circle">✓</span></button>
+            </div></div></div>
+            <div class="settings-card glass-panel"><div class="settings-icon">文</div><div class="settings-main"><h2 data-i18n="interfaceLanguage">Язык приложения</h2><p data-i18n="languageDescription">Вы можете изменить язык в любой момент.</p><div class="setting-segment" role="group" aria-label="Language"><button type="button" data-lang="ru">🇷🇺 <span>Русский</span></button><button type="button" data-lang="en">🇬🇧 <span>English</span></button></div></div></div>
+            <div class="settings-card glass-panel"><div class="settings-icon">✦</div><div class="settings-main"><h2 data-i18n="accentTitle">Акцентный цвет</h2><p data-i18n="accentDescription">Небольшая деталь, которая делает интерфейс вашим.</p><div class="accent-options" role="group" aria-label="Accent colors"><button type="button" data-accent="violet" style="--swatch:#a99aff" aria-label="Violet"></button><button type="button" data-accent="mint" style="--swatch:#88e8b7" aria-label="Mint"></button><button type="button" data-accent="blue" style="--swatch:#87bdff" aria-label="Blue"></button></div></div></div>
+
+            <section class="v5-settings-card glass-panel"><div class="v5-settings-heading"><span class="v5-setting-symbol">⇄</span><div><h2 data-v5="scannerSettings">Сканер и расчёты</h2><p data-v5="scannerSettingsDesc">Ваши стандартные параметры сделок, которые применяются на главной.</p></div></div><div class="v5-settings-grid">
+             <label><span data-v5="defaultTrade">Размер сделки · USDT</span><input id="v5DefaultAmount" type="number" min="10" max="100000" step="10" inputmode="decimal"></label>
+             <label><span data-v5="defaultFee">Комиссия каждой биржи · %</span><input id="v5DefaultFee" type="number" min="0" max="3" step="0.01" inputmode="decimal"></label>
+             <label><span data-v5="withdrawFee">Вывод / перевод · USDT</span><input id="v5Transfer" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></label>
+             <label><span data-v5="slippage">Проскальзывание за сторону · %</span><input id="v5Slippage" type="number" min="0" max="5" step="0.05" inputmode="decimal"></label>
+            </div><p class="v5-small" data-v5="feeDetails">Дополнительные расходы применяются к быстрому сравнению и не подменяют исходные котировки.</p><button type="button" id="v5ResetTrade" class="v5-pill" data-v5="resetTrade">Сбросить параметры</button></section>
+            <section class="v5-settings-card glass-panel"><div class="v5-settings-heading"><span class="v5-setting-symbol">◈</span><div><h2 data-v5="comfort">Комфорт и отображение</h2><p data-v5="comfortDesc">Меньше шума, больше контроля.</p></div></div><div class="v5-choice-row"><div><strong data-v5="compact">Компактные таблицы</strong><p data-v5="compactDesc">Показывать больше строк без прокрутки</p></div><label class="v5-switch"><input type="checkbox" id="v5Compact"><span></span></label></div><div class="v5-choice-row"><div><strong data-v5="hideLosses">Скрывать убыточные предложения</strong><p data-v5="hideLossesDesc">По умолчанию показывать только прибыльные после базовых комиссий</p></div><label class="v5-switch"><input type="checkbox" id="v5OnlyPositive"><span></span></label></div><div class="v5-choice-row"><div><strong data-v5="defaultDemo">Показывать подсказки о демо</strong><p data-v5="demoDesc">Отличать тестовые цены от реальных</p></div><label class="v5-switch"><input type="checkbox" id="v5DemoNotice" checked><span></span></label></div></section>
+            <section class="v5-settings-card glass-panel"><div class="v5-settings-heading"><span class="v5-setting-symbol">▣</span><div><h2 data-v5="yourData">Данные на устройстве</h2><p data-v5="yourDataDesc">Сохраните настройки или начните с чистого листа.</p></div></div><div class="v5-row v5-profile-actions"><button type="button" class="v5-pill" id="v5ExportPrefs" data-v5="backupPrefs">Скачать настройки</button><button type="button" class="v5-pill v5-danger" id="v5ResetPrefs" data-v5="resetPrefs">Сбросить настройки v0.5</button></div><p class="v5-small" data-v5="dataWarning">Файл настроек не содержит пароль, фото или историю портфеля.</p><p class="v5-small" id="v5SettingsFeedback" role="status" aria-live="polite"></p></section>
+
+            <div class="settings-footnote"><span>ⓘ</span><span data-i18n="settingsNote">Язык, тема и профиль сохраняются локально на этом устройстве.</span></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+
+  <nav class="glass-dock dock-six" aria-label="Primary navigation" id="mainDock">
+    <button type="button" data-page="home" class="dock-button active" aria-current="page"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9H3zM9 20v-7h6v7"/></svg><span data-i18n="home">Главная</span></button>
+    <button type="button" data-page="fiat" class="dock-button"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9a4 4 0 0 0 0 8h6a4 4 0 0 1 0 8H7"/></svg><span data-i18n="fiat">Валюты</span></button>
+    <button type="button" data-page="investments" class="dock-button"><svg viewBox="0 0 24 24"><path d="m3 16 6-7 4 3 8-9M16 3h5v5M3 21h18"/></svg><span data-i18n="investments">Инвестиции</span></button>
+    <button type="button" data-page="portfolio" class="dock-button"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M8 15h3"/></svg><span data-i18n="portfolioTab">Портфель</span></button>
+    <button type="button" data-page="profile" class="dock-button"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.6 20a7.4 7.4 0 0 1 14.8 0"/></svg><span data-i18n="profile">Профиль</span></button>
+    <button type="button" data-page="settings" class="dock-button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg><span data-i18n="settings">Настройки</span></button>
+  </nav>
+
+  <div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><div class="section-eyebrow"><span class="accent-line"></span><span data-i18n="spreadBreakdown">ПОДРОБНЫЙ РАСЧЁТ</span></div><h2 id="modalTitle">BTC / USDT</h2></div><button type="button" id="modalClose" class="icon-btn" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div><div id="modalBody"></div></div></div>
+  <noscript><div style="padding:30px;color:white;background:#111">JavaScript is required to run this scanner.</div></noscript>
+</body>
+</html>
